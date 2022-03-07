@@ -4,7 +4,7 @@ namespace App\Http\Controllers\front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Melihovv\ShoppingCart\Facades\ShoppingCart;
+use Melihovv\ShoppingCart\Facades\ShoppingCart as Cart;
 
 class CartController extends Controller
 {
@@ -15,7 +15,7 @@ class CartController extends Controller
 
     public function store(Request $request) {
        
-        ShoppingCart::add($request->id, $request->name, $request->price, 1);
+        $cartitem = Cart::add($request->id, $request->name, $request->price, 1);
 
         return redirect()->back()->with('msg', 'Item had been added to cart');
     }

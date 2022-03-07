@@ -1,5 +1,5 @@
 @php
-  use Melihovv\ShoppingCart\Facades\ShoppingCart;
+  use Melihovv\ShoppingCart\Facades\ShoppingCart as Cart;
 @endphp
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -13,8 +13,8 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('cart') }}"><i class="fa fa-shopping-cart"></i> Cart
-                        @if (ShoppingCart::instance('default')->count() > 0 )
-                            <strong>({{ ShoppingCart::instance('default')->count() }})</strong>
+                        @if (Cart::instance('default')->count()  )
+                            <strong>({{ Cart::instance('default')->count() }})</strong>
                         @endif
                     </a>
                 </li>
