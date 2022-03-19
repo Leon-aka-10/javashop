@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
-use Melihovv\ShoppingCart\Facades\ShoppingCart as Cart;
+use Darryldecode\Cart;
 
 class CartController extends Controller
 {
@@ -13,11 +14,36 @@ class CartController extends Controller
         return view('admin.front.cart.index'); 
     }
 
+    
+    
+
     public function store(Request $request) {
+
+
+        $request->validate([
+            'name'=>'required',
+            'price'=>'required',
+            
+        ]);
+
+        
+        $id = auth()->user()->id;
        
-        Cart::add($request->id, $request->name, $request->price, 1)->associate('App\Product');
+        \Cart::session($id)->add([
+            'id' => $request->id,
+            'name' => $request->name,
+            'price' => $request->price,
+            'quantity' => $request->quantity,
+            'attributes' => array(),
+            'associatedModel' => $product
+            
+        ]);
   
-        return redirect()->back()->with('msg', 'Item had been added to cart');
+          //sessions message
+          $request->session()->flash('msg','Your product has been added');
+
+          //redirect
+          return redirect()->route('/cart');
     }
 }
  

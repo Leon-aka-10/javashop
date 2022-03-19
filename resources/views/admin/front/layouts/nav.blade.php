@@ -1,7 +1,3 @@
-@php
-  use Melihovv\ShoppingCart\Facades\ShoppingCart as Cart;
-@endphp
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">LaravelShop</a>
@@ -13,9 +9,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('cart') }}"><i class="fa fa-shopping-cart"></i> Cart
-                        @if (Cart::instance('default')->count()  )
-                            <strong>({{ Cart::instance('default')->count() }})</strong>
-                        @endif
+                            <strong>(23)</strong>
                     </a>
                 </li>
                 <li class="nav-item dropdown">
