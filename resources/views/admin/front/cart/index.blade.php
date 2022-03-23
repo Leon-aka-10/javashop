@@ -3,10 +3,10 @@
 @section('content')
 
 
-    <h2 class="mt-5"><i class="fa fa-shopping-cart"></i> Shooping Cart</h2>
+    <h2 class="mt-5"><i class="fa fa-shopping-cart"></i> Shopping Cart</h2>
     <hr>
 
-    
+    @if ( Cart::getContent()->count() > 0 )
 
     <h4 class="mt-5">4 items(s) in Shopping Cart</h4>
 
@@ -24,13 +24,13 @@
                 <table class="table">
                     
                     <tbody> 
-                        
-            
+                    
+                    @foreach ( Cart::getContent() as $item )
 
                         <tr>
                             <td><img src="images/12.jpg" style="width: 5em"></td>
                             <td>
-                                <strong>Laptop</strong><br> This is some text for the product
+                                <strong>{{ $item->model->name }}</strong><br> This is some text for the product
                             </td>
                             
                             <td>
@@ -50,7 +50,8 @@
                             <td>$233</td>
                         </tr>
                     
-
+                    @endforeach
+                     
                     </tbody>
 
                 </table>
@@ -87,7 +88,7 @@
                     <hr>
 
                 </div>
-             
+             @endif
 
                 <div class="col-md-12">
                 

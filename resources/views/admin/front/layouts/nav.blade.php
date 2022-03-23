@@ -9,7 +9,9 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('cart') }}"><i class="fa fa-shopping-cart"></i> Cart
-                            <strong>(23)</strong>
+                        @if ( Cart::getContent()->count() > 0 )
+                            <strong>({{ Cart::getContent()->count() }})</strong>
+                        @endif
                     </a>
                 </li>
                 <li class="nav-item dropdown">

@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
@@ -11,6 +11,7 @@ use App\Http\Controllers\front\RegistrationController;
 use App\Http\Controllers\front\UserLoginController;
 use App\Http\Controllers\front\UserProfileController;
 use App\Http\Controllers\front\CartController;
+use Darryldecode\Cart\Cart;
 
 //Admin Routes
 
@@ -62,3 +63,7 @@ Route::get('/user/profile', [UserProfileController::class,'index']);
 // Cart
 Route::get('/cart', [CartController::class,'index']); 
 Route::post('/cart', [CartController::class,'store'])->name('cart');
+
+/* Route::get('empty', function() {
+  Cart::instance('default')->destroy();
+}); */ 

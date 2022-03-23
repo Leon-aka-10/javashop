@@ -12,38 +12,26 @@ class CartController extends Controller
     public function index(){
  
         return view('admin.front.cart.index'); 
-    }
+    } 
 
-    
     
 
     public function store(Request $request) {
 
-
-        $request->validate([
-            'name'=>'required',
-            'price'=>'required',
-            
-        ]);
-
-        
-        $id = auth()->user()->id;
+         
+            \Cart::add(array(
+             'id' => $request->id, 
+             'name' => $request->name, 
+             'price' => $request->price, 
+             'quantity' => 1,
+             'associatedModel' => 'App\Models\Product'
+            ));
        
-        \Cart::session($id)->add([
-            'id' => $request->id,
-            'name' => $request->name,
-            'price' => $request->price,
-            'quantity' => $request->quantity,
-            'attributes' => array(),
-            'associatedModel' => $product
-            
-        ]);
+      
   
           //sessions message
           $request->session()->flash('msg','Your product has been added');
 
-          //redirect
-          return redirect()->route('/cart');
     }
 }
  
