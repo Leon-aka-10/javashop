@@ -1,4 +1,4 @@
- <?php
+<?php
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
@@ -63,7 +63,3 @@ Route::get('/user/profile', [UserProfileController::class,'index']);
 // Cart
 Route::get('/cart', [CartController::class,'index']); 
 Route::post('/cart', [CartController::class,'store'])->name('cart');
-
-/* Route::get('empty', function() {
-  Cart::instance('default')->destroy();
-}); */ 

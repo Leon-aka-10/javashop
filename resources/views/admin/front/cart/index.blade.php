@@ -5,7 +5,7 @@
 
     <h2 class="mt-5"><i class="fa fa-shopping-cart"></i> Shopping Cart</h2>
     <hr>
-
+  
     @if ( Cart::getContent()->count() > 0 )
 
     <h4 class="mt-5">4 items(s) in Shopping Cart</h4>
@@ -28,9 +28,9 @@
                     @foreach ( Cart::getContent() as $item )
 
                         <tr>
-                            <td><img src="images/12.jpg" style="width: 5em"></td>
+                            <td><img src="{{ url('/uploads'). '/'. $item->model->image }}" style="width: 5em"></td>
                             <td>
-                                <strong>{{ $item->model->name }}</strong><br> This is some text for the product
+                                <strong>{{ $item->model->name }}</strong><br> {{ $item->model->description }}
                             </td>
                             
                             <td>
@@ -47,7 +47,7 @@
                                 </select>
                             </td>
                             
-                            <td>$233</td>
+                            <td>${{ $item->model->price }}</td>
                         </tr>
                     
                     @endforeach
@@ -68,15 +68,15 @@
                                 </thead>
                                     <tr>
                                         <td>Subtotal </td>
-                                        <td>12500.00 </td>
+                                        <td>${{ Cart::getSubTotal() }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Text</td>
-                                        <td>2133.00</td>
+                                        <td>Tax</td>
+                                        <td>${{ 0 }}</td>
                                     </tr>
                                     <tr>
                                         <th>Total</th>
-                                        <th>1,8444</th>
+                                        <th>${{ Cart::getTotal() }}</th>
                                     </tr>
                              </table>           
                          </div>
@@ -88,7 +88,7 @@
                     <hr>
 
                 </div>
-             @endif
+              @endif
 
                 <div class="col-md-12">
                 

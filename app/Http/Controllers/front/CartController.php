@@ -28,10 +28,8 @@ class CartController extends Controller
             ));
        
       
-  
-          //sessions message
-          $request->session()->flash('msg','Your product has been added');
-
+          //redirect
+          return redirect()->back()->with('msg','Your product has been added');
     }
 }
  

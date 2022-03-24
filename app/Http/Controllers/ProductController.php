@@ -53,6 +53,7 @@ class ProductController extends Controller
 
         //redirect
         return redirect('admin/products/create');
+
     }
 
     public function edit($id) {

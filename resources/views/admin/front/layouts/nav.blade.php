@@ -10,7 +10,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('cart') }}"><i class="fa fa-shopping-cart"></i> Cart
                         @if ( Cart::getContent()->count() > 0 )
-                            <strong>({{ Cart::getContent()->count() }})</strong>
+                            <strong>({{ Cart::getTotalQuantity() }})</strong>
                         @endif
                     </a>
                 </li>
