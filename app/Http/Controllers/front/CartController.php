@@ -31,5 +31,13 @@ class CartController extends Controller
           //redirect
           return redirect()->back()->with('msg','Your product has been added');
     }
+
+    public function destroy($id) {
+ 
+        \Cart::remove($id);
+
+        return redirect()->back()->with('msg', 'Item has been removed from cart');
+    } 
+
 }
  
