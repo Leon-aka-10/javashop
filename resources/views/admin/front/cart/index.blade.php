@@ -39,12 +39,17 @@
                                     @method('delete')
                                    <button type="submit" class = "btn btn-link-dark">Remove</button>
                                 </form>
-                                <a href="">Save for later</a>
+
+                                <form action="{{ route('cart.saveLater', $item->id ) }}" method="post" >
+                                    @csrf
+                                    <button type="submit" class="btn btn-link-dark">Save for later</button>
+                                </form>
+                                
 
                             </td>
                             
                             <td>
-                                <select name="" id="" class="form-control" style="width: 4.7em">
+                                <select name="" id="" class="form-control" st yle="width: 4.7em">
                                     <option value="">1</option>
                                     <option value="">2</option>
                                 </select>
@@ -60,8 +65,8 @@
                 </table>
 
             </div>   
-            <!-- Price Details -->
-                <div class="col-md-6">
+                <!-- Price Details -->
+                    <div class="col-md-6">
                         <div class="sub-total">
                              <table class="table table-bordered table-hover">
                                 <thead>
@@ -95,89 +100,55 @@
                   <h3>There is no item in your Cart</h3>
                   <a href="/" class="btn btn-outline-dark">Continue Shopping</a>
                   <hr>
-              @endif
+                @endif
 
-                <div class="col-md-12">
+            <!--@if ( Cart::getContent('saveForLater')->count() > 0 )
+
+            <div class="col-md-12">
                 
-                <h4>2 items Save for Later</h4>
+                <h4>{{ Cart::getTotalQuantity('saveForLater') }} item(s) Save for Later</h4>
                 <table class="table">
                     
                     <tbody>
-                        
+                    @foreach ( Cart::getContent('saveForLater') as $item )
+
                         <tr>
-                            <td><img src="" style="width: 5em"></td>
+                            <td><img src="{{ url('/uploads'). '/'. $item->model->image }}" style="width: 5em"></td>
                             <td>
-                                <strong>Mac</strong><br> This is some text for the product
+                                <strong>{{ $item->model->name }}</strong><br> {{ $item->model->description }}
                             </td>
                             
                             <td>
-        
-                                <a href="">Remove</a><br>
-                                <a href="">Save for later</a>
+                                <form action="{{ route('cart.destroy', $item->id ) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                   <button type="submit" class = "btn btn-link-dark">Remove</button>
+                                </form>
+
+                                <form action="{{ route('cart.saveLater', $item->id ) }}" method="post" >
+                                    @csrf
+                                    <button type="submit" class="btn btn-link-dark">Move to cart</button>
+                                </form>
+                                
 
                             </td>
                             
                             <td>
-                                <select name="" id="" class="form-control" style="width: 4.7em">
+                                <select name="" id="" class="form-control" st yle="width: 4.7em">
                                     <option value="">1</option>
                                     <option value="">2</option>
                                 </select>
                             </td>
                             
-                            <td>$233</td>
+                            <td>${{ $item->model->price }}</td>
                         </tr>
-
-                        <tr>
-                            <td><img src="images/01.jpg" style="width: 5em"></td>
-                            <td>
-                                <strong>Laptop</strong><br> This is some text for the product
-                            </td>
-                            
-                            <td>
-        
-                                <a href="">Remove</a><br>
-                                <a href="">Save for later</a>
-
-                            </td>
-                            
-                            <td>
-                                <select name="" id="" class="form-control" style="width: 4.7em">
-                                    <option value="">1</option>
-                                    <option value="">2</option>
-                                </select>
-                            </td>
-                            
-                            <td>$233</td>
-                        </tr>
-
-                        <tr>
-                            <td><img src="images/12.jpg" style="width: 5em"></td>
-                            <td>
-                                <strong>Laptop</strong><br> This is some text for the product
-                            </td>
-                            
-                            <td>
-        
-                                <a href="">Remove</a><br>
-                                <a href="">Save for later</a>
-
-                            </td>
-                            
-                            <td>
-                                <select name="" id="" class="form-control" style="width: 4.7em">
-                                    <option value="">1</option>
-                                    <option value="">2</option>
-                                </select>
-                            </td>
-                            
-                            <td>$233</td>
-                        </tr>
-
+                    
+                    @endforeach
                     </tbody>
 
                 </table>
-
-            </div>  
+                @endif
+            </div>  -->
         </div>
 
 

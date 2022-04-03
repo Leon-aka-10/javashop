@@ -63,7 +63,8 @@ Route::get('/user/profile', [UserProfileController::class,'index']);
 // Cart
 Route::get('/cart', [CartController::class,'index']); 
 Route::post('/cart', [CartController::class,'store'])->name('cart');
-Route::delete('/cart/{id}', [CartController::class,'destroy'])->name('cart.destroy');
+Route::delete('/cart/{id}', [CartController::class,'destroy'])->name('cart.destroy'); 
+Route::post('/cart/saveLater/{product}',[CartController::class,'saveLater'])->name('cart.saveLater');
 
 
 Route::get('empty', function() {   
