@@ -49,7 +49,7 @@
                             </td>
                             
                             <td>
-                                <select name="" id="" class="form-control" st yle="width: 4.7em">
+                                <select name="" id="" class="form-control" style="width: 4.7em">
                                     <option value="">1</option>
                                     <option value="">2</option>
                                 </select>

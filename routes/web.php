@@ -11,6 +11,7 @@ use App\Http\Controllers\front\RegistrationController;
 use App\Http\Controllers\front\UserLoginController;
 use App\Http\Controllers\front\UserProfileController;
 use App\Http\Controllers\front\CartController;
+use App\Http\Controllers\front\CheckoutController;
 use Darryldecode\Cart\Cart;
 
 //Admin Routes
@@ -66,6 +67,8 @@ Route::post('/cart', [CartController::class,'store'])->name('cart');
 Route::delete('/cart/{id}', [CartController::class,'destroy'])->name('cart.destroy'); 
 Route::post('/cart/saveLater/{product}',[CartController::class,'saveLater'])->name('cart.saveLater');
 
+//Checkout
+Route::get('/checkout', [CheckoutController::class,'index']);
 
 Route::get('empty', function() {   
   Cart::getContent()->destroy();
