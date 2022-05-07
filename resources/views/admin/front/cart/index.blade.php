@@ -40,10 +40,10 @@
                                    <button type="submit" class = "btn btn-link-dark">Remove</button>
                                 </form>
 
-                                <form action="{{ route('cart.saveLater', $item->id ) }}" method="post" >
+                              <!--<form action="{{ route('cart.saveLater', $item->id ) }}" method="post" >
                                     @csrf
                                     <button type="submit" class="btn btn-link-dark">Save for later</button>
-                                </form>
+                                </form> -->
                                 
 
                             </td>

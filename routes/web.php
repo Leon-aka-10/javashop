@@ -12,6 +12,7 @@ use App\Http\Controllers\front\UserLoginController;
 use App\Http\Controllers\front\UserProfileController;
 use App\Http\Controllers\front\CartController;
 use App\Http\Controllers\front\CheckoutController;
+use App\Http\Controllers\front\PaymentController;
 use Darryldecode\Cart\Cart;
 
 //Admin Routes
@@ -73,3 +74,7 @@ Route::get('/checkout', [CheckoutController::class,'index']);
 Route::get('empty', function() {   
   Cart::getContent()->destroy();
 });
+
+//Payment
+Route::get('/payment/callback', [PaymentController::class, 'handleGatewayCallback'])->name('payment');
+Route::post('/pay', [PaymentController::class, 'redirectToGateway'])->name('pay');

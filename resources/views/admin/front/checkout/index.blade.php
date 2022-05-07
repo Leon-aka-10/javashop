@@ -2,6 +2,13 @@
 
 @section('content')
 
+
+    @if (session()->has('msg'))
+       <div class="alert alert-success">
+          {{  session()->get('msg') }}
+       </div>
+    @endif
+
     <div class="container">
 
         <h2 class="mt-5"><i class="fa  fa-credit-card-alt"></i> Checkout</h2>
@@ -10,10 +17,10 @@
 
         <div class="row"> 
 
-        <div class="col-md-7">  
-            <h4>Billing Details</h4>
+              <div class="col-md-7">  
+                <h4>Billing Details</h4>
 
-               <form>
+                <form method="POST" action="{{ route('pay') }}" accept-charset="UTF-8" class="form-horizontal" role="form">
                   <div class="form-row">
                     <div class="form-group col-md-6">
                       <label for="email">Email</label>
@@ -21,7 +28,7 @@
                     </div>
                     <div class="form-group col-md-6">
                       <label for="name">Name</label>
-                      <input type="text" class="form-control" id="name" placeholder="Password">
+                      <input type="text" class="form-control" id="name" placeholder="Name">
                     </div>
                   </div>
                   <div class="form-group">
@@ -46,23 +53,22 @@
                     <label for="phone">Phone</label>
                     <input type="text" class="form-control" id="phone" placeholder="Phone">
                   </div>
+                  <input type="hidden" name="email" value="chuboy_10@yahoo.com"> {{-- required --}}
+                  <input type="hidden" name="orderID" value="345">
+                  <input type="hidden" name="amount" value="800"> {{-- required in kobo --}}
+                  <input type="hidden" name="quantity" value="3">
+                  <input type="hidden" name="currency" value="NGN">
+                  <input type="hidden" name="metadata" value="{{ json_encode($array = ['key_name' => 'value',]) }}" > {{-- For other necessary things you want to add to your payload. it is optional though --}}
+                  <input type="hidden" name="reference" value="{{ Paystack::genTranxRef() }}"> {{-- required --}}
+                  {{ csrf_field() }} {{-- works only when using laravel 5.1, 5.2 --}}
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}"> {{-- employ this in place of csrf_field only in laravel 5.0 --}}
                   <hr>
-                  <h5><i class="fa fa-credit-card"></i> Payment Details</h5>
-
-                  <div class="form-group">
-                    <label for="name_card">Name on card</label>
-                    <input type="text" class="form-control" id="name_card" placeholder="Name on card">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="card">Credit or debit card</label>
-                    <input type="text" class="form-control" id="card" placeholder="Credit or debit card">
-                  </div>
-                  
-                  <button type="submit" class="btn btn-outline-info col-md-12">Complete Order</button>
+                  <button type="submit" class="btn btn-outline-info col-md-12"><i class="fa fa-plus-circle fa-lg"></i>
+                    Complete Order
+                  </button>
                 </form>
 
-            </div>
+              </div>
 
             <div class="col-md-5">
                 
